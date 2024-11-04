@@ -1,0 +1,43 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install hatch
+
+      - name: Lint/Format
+        run: hatch fmt
+
+      - name: Mypy
+        run: |
+          mkdir -p .mypy_cache
+          hatch run check
+
+      - name: Build package
+        run: hatch build
+
+      - name: Test package
+        run: hatch test --cover
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
