@@ -28,7 +28,7 @@ jobs:
       - name: Mypy
         run: |
           mkdir -p .mypy_cache
-          hatch run check
+          hatch run types:check
 
       - name: Build package
         run: hatch build

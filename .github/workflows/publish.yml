@@ -33,7 +33,7 @@ jobs:
         run: hatch fmt
 
       - name: Mypy
-        run: hatch run check
+        run: hatch run types:check
 
       - name: Build package
         run: hatch build
