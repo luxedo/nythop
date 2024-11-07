@@ -62,3 +62,10 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.ruff.lint]
+ignore = ["S102", "BLE001"]  # I'm fearless
+
+[tool.ruff.lint.per-file-ignores]
+"docs/*" = ["INP001"]
+"tests/*" = ["S101"]
