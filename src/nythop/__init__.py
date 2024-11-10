@@ -3,5 +3,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from nythop.nythop import cli
+from nythop.transpile import transpile
 
-__all__ = ["cli"]
+__all__ = ["cli", "transpile"]

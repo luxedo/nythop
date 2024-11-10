@@ -26,7 +26,7 @@ classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
 ]
 dependencies = []
-scripts = {"nythop" = "nythop:cli"}
+scripts = {nythop = "nythop:cli", nythop-transpile = "nythop:transpile"}
 
 [project.urls]
 Documentation = "https://github.com/Luiz Eduardo Amaral/nythop#readme"
@@ -66,6 +66,9 @@ extra-dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/nythop tests}"
 
+[tool.mypy]
+exclude = "tests/examples/"
+
 [tool.coverage.run]
 source_pkgs = ["nythop", "tests"]
 branch = true
@@ -84,6 +87,10 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+
+[tool.ruff]
+extend-exclude = ["tests/examples/"]
 
 [tool.ruff.lint]
 ignore = ["S102", "BLE001"]  # I'm fearless

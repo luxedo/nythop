@@ -5,7 +5,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/luxedo/nythop/publish.yml)
 ![Codecov](https://img.shields.io/codecov/c/github/luxedo/nythop)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/luxedo/nythop)
 
 ---
 
@@ -33,6 +32,7 @@ Ready to leave Python behind? Let’s dive in!
 - [Installation](#installation)
 - [Coding](#coding)
 - [Running](#running)
+- [Transpiler](#transpiler)
 - [License](#license)
 
 ## Installation
@@ -118,6 +118,29 @@ nyhtop
 ```
 
 The REPL will wait for your input in a prompt format. Type `)(tixe` when you’re ready to escape.
+
+## Transpiler
+
+Nyhtop comes with a built-in transpiler that allows you to convert Python code into Nyhtop syntax,
+turning your familiar Python code into its backward counterpart.
+
+You can use the nythop-transpile command to transpile a Python script into Nyhtop. The basic usage
+is:
+
+```bash
+usage: nythop-transpile [-h] [-c cmd] [-o [output]] [file]
+
+Transpiles python code into nythop
+
+positional arguments:
+  file         Python script file
+
+options:
+  -h, --help   show this help message and exit
+  -c cmd       program passed in as string
+  -o [output]  output file
+
+```
 
 ## License
 

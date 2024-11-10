@@ -11,6 +11,10 @@ from pathlib import Path
 from nythop.__about__ import __version__
 
 
+def nythop_convert(string: str) -> str:
+    return "\n".join(line[::-1] for line in string.split("\n"))
+
+
 def cli():
     import argparse
 
@@ -21,22 +25,26 @@ def cli():
         )
     )
     parser.add_argument("file", nargs="?", help="Nythop script file", type=argparse.FileType("r"))
-    parser.add_argument("-c", help="Program passed in as string", type=str)
+    parser.add_argument("-c", dest="cmd", metavar="cmd", help="Program passed in as string", type=str)
     args = parser.parse_args()
+
     match args:
-        case argparse.Namespace(file=None, c=None):
+        case argparse.Namespace(file=None, cmd=None):
             run_repl()
-        case argparse.Namespace(file=None, c=command):
+        case argparse.Namespace(file=None, cmd=command) if command is not None:
             run_command(command)
-        case argparse.Namespace(file=file, c=None) if file.name == "<stdin>":
+        case argparse.Namespace(file=file, cmd=None) if file is not None and file.name == "<stdin>":
             run_command(sys.stdin.read())
-        case argparse.Namespace(file=file, c=None):
+        case argparse.Namespace(file=file, cmd=None) if file is not None:
             run_file(Path(file.name))
+        case _:
+            sys.stderr.write("Something went wrong!\n")
+            sys.exit(2)
 
 
 def run_file(filepath: Path):
-    code = "\n".join(line[::-1] for line in filepath.read_text().split("\n"))
-    with tempfile.NamedTemporaryFile(delete=False, mode="w", suffix=".py") as tmpfile:
+    code = nythop_convert(filepath.read_text())
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".py") as tmpfile:
         tmpfile.write(code)
         tmpfile.flush()
         tmpfile_path = tmpfile.name
@@ -56,14 +64,15 @@ def run_repl():
         banner = f"Nythop {__version__} on Python {sys.version} on {sys.platform}\n{cprt}"
 
         def raw_input(self, prompt="Nythop>"):
-            return input(prompt)[::-1]
+            command = input(prompt)
+            return nythop_convert(command)
 
     c = NythopREPL()
     c.interact(banner=c.banner, exitmsg="")
 
 
 def run_command(command: str):
-    code = "\n".join(line[::-1] for line in command.split("\n"))
+    code = nythop_convert(command)
 
     try:
         exec(code)
@@ -72,6 +81,6 @@ def run_command(command: str):
         sys.exit(e.code)
     except Exception as e:
         tb_lines = traceback.format_exception(type(e), e, e.__traceback__)
-        del tb_lines[1]  # This line references nythop library. Don't want to show users
+        tb_lines.pop(1)  # This line references nythop library. Don't want to show users
         sys.stdout.write("".join(tb_lines))
         sys.exit(1)
