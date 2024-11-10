@@ -5,7 +5,6 @@ import code
 import subprocess
 import sys
 import tempfile
-import traceback
 from pathlib import Path
 
 from nythop.__about__ import __version__
@@ -73,14 +72,6 @@ def run_repl():
 
 def run_command(command: str):
     code = nythop_convert(command)
-
-    try:
-        exec(code)
-        sys.exit(0)
-    except SystemExit as e:
-        sys.exit(e.code)
-    except Exception as e:
-        tb_lines = traceback.format_exception(type(e), e, e.__traceback__)
-        tb_lines.pop(1)  # This line references nythop library. Don't want to show users
-        sys.stdout.write("".join(tb_lines))
-        sys.exit(1)
+    with subprocess.Popen([sys.executable, "-c", code], stdout=sys.stdout, stderr=sys.stderr) as proc:
+        proc.communicate()
+        sys.exit(proc.returncode)

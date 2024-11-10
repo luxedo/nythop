@@ -23,7 +23,62 @@ If you’re tired of the predictability and accessibility of Python, Nyhtop prom
 up by keeping things just familiar enough to fool you into thinking you know what’s happening. But
 in practice? It’s perfectly unreadable – just as any good esolang should be.
 
-Ready to leave Python behind? Let’s dive in!
+Fly with the freedom of _Nythop_ with the following examples:
+
+<!-- prettier-ignore-start -->
+```
+Arithmetic operations #
+5 = a
+3 = b
+)b + a ,":muS"(tnirp
+)b - a ,":ecnereffiD"(tnirp
+)b * a ,":tcudorP"(tnirp
+)b / a ,":tneitouQ"(tnirp
+```
+
+```
+Leading whitespaces are not a problem #
+                   5 = a
+                    3 = b
+      )b + a ,":muS"(tnirp
+)b - a ,":ecnereffiD"(tnirp
+  )b * a ,":tcudorP"(tnirp
+)b / a ,":tneitouQ"(tnirp
+```
+
+```
+5 Factorial #
+:)n(lairotcaf fed
+:0 == n fi    
+1 nruter        
+:esle    
+)1 - n(lairotcaf * n nruter        
+
+))5(lairotcaf ,":5 fo lairotcaF"(tnirp
+```
+
+```
+Print up to 10th term of fibonacci #
+:)n(iccanobif fed
+1 ,0 = b ,a    
+:)n(egnar ni _ rof    
+)" "=dne ,a(tnirp        
+b + a ,b = b ,a        
+
+)01(iccanobif
+```
+
+```
+Nythop supports the most advanced LLM technologies too! #
+IAnepO tropmi smll.niahcgnal morf
+
+)"yek-ipa-ruoy"=yek_ipa_ianepo(IAnepO = mll
+)"?pohtyN htiw gnidoc yojne uoy oD"(mll = esnopser
+)esnopser(tnirp
+```
+<!-- prettier-ignore-end -->
+
+> #### Ready to leave Python behind? Let’s dive in!
 
 ---
 
@@ -124,7 +179,7 @@ The REPL will wait for your input in a prompt format. Type `)(tixe` when you’r
 Nyhtop comes with a built-in transpiler that allows you to convert Python code into Nyhtop syntax,
 turning your familiar Python code into its backward counterpart.
 
-You can use the nythop-transpile command to transpile a Python script into Nyhtop. The basic usage
+You can use the `nythop-transpile` command to transpile a Python script into Nyhtop. The basic usage
 is:
 
 ```bash
