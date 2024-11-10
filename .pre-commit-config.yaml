@@ -25,7 +25,7 @@ repos:
         pass_filenames: false
       - id: cov
         name: test/coverage
-        entry: hatch test --cover
+        entry: hatch run cov-xml
         language: python
         types: [python]
         pass_filenames: false

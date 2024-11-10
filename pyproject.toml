@@ -36,6 +36,28 @@ Source = "https://github.com/Luiz Eduardo Amaral/nythop"
 [tool.hatch.version]
 path = "src/nythop/__about__.py"
 
+[tool.hatch.envs.default]
+dependencies = [
+  "pre-commit>3.1",
+  "coverage[toml]>=6.5",
+  "pytest",
+]
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report -m",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+cov-xml = [
+  "cov",
+  "coverage xml",
+]
+
 [tool.hatch.envs.types]
 extra-dependencies = [
   "mypy>=1.0.0",
