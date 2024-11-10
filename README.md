@@ -4,7 +4,8 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nythop.svg)](https://pypi.org/project/nythop)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/luxedo/nythop/publish.yml)
-![Codecov](https://img.shields.io/codecov/c/github/luxedo/nythop) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/luxedo/nythop)
+![Codecov](https://img.shields.io/codecov/c/github/luxedo/nythop)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/luxedo/nythop)
 
 ---
 

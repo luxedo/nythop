@@ -34,7 +34,7 @@ jobs:
         run: hatch build
 
       - name: Test package
-        run: hatch test --cover
+        run: hatch run cov-xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v4
