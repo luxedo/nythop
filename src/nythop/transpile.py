@@ -11,6 +11,19 @@ from nythop.nythop import nythop_convert
 
 
 def transpile():
+    """
+    Transpiles Python code into Nythop syntax.
+
+    This function parses command-line arguments, which can either be a Python script file,
+    a command passed as a string, or input from stdin. It converts the input code into Nythop
+    syntax using the `nythop_convert` function and writes the result to a specified output file
+    or prints it to stdout. If no valid input is provided, it displays an error message and exits.
+
+    Command-line arguments:
+        - `file`: The Python script file to transpile.
+        - `-c`: A Python program passed as a string to be transpiled.
+        - `-o`: The file to write the transpiled Nythop code to. If not provided, output is printed to stdout.
+    """
     parser = argparse.ArgumentParser(description="Transpiles python code into nythop")
 
     parser.add_argument("file", nargs="?", help="Python script file", type=argparse.FileType("r"))
@@ -41,6 +54,19 @@ def transpile():
 
 
 def validate_source(code: str):
+    """
+    Validates the Python code to ensure it can be compiled.
+
+    This function attempts to compile the provided code string to ensure it is valid Python code.
+    If the code is invalid, it catches the exception, formats the traceback, and prints an error
+    message to stderr before exiting.
+
+    Args:
+        code (str): The Python code to be validated.
+
+    Raises:
+        SystemExit: If the code cannot be compiled, the function exits with an error message.
+    """
     try:
         compile(f"{code}\n", "<string>", "exec")
     except Exception as e:

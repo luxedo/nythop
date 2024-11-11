@@ -15,6 +15,20 @@ def nythop_convert(string: str) -> str:
 
 
 def cli():
+    """
+    Command-line interface for the Nyhtop esolang interpreter.
+
+    Parses command-line arguments to determine the action to take: running a file,
+    executing a command, or starting the REPL.
+
+    Args:
+        None
+
+    Command-line arguments:
+        - file: Path to a Nyhtop script file.
+        - -c: Execute a Nyhtop program passed as a string.
+        - No arguments: Starts an interactive REPL session.
+    """
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -42,6 +56,12 @@ def cli():
 
 
 def run_file(filepath: Path):
+    """
+    Executes a Nyhtop script from a file.
+
+    Args:
+        filepath (Path): Path to the Nyhtop script file.
+    """
     code = nythop_convert(filepath.read_text())
     with tempfile.NamedTemporaryFile(mode="w", suffix=".py") as tmpfile:
         tmpfile.write(code)
@@ -58,6 +78,12 @@ def run_file(filepath: Path):
 
 
 def run_repl():
+    """
+    Starts an interactive Nyhtop REPL (Read-Eval-Print Loop) session.
+
+    Provides a REPL environment for executing Nyhtop commands interactively.
+    """
+
     class NythopREPL(code.InteractiveConsole):
         cprt = 'Type "pleh", "thgirypoc", "stiderc" or "esnecil" for more information or ")(tixe" to exit.'
         banner = f"Nythop {__version__} on Python {sys.version} on {sys.platform}\n{cprt}"
@@ -71,6 +97,12 @@ def run_repl():
 
 
 def run_command(command: str):
+    """
+    Executes a Nyhtop command passed as a string.
+
+    Args:
+        command (str): The Nyhtop code to execute, passed as a single string.
+    """
     code = nythop_convert(command)
     with subprocess.Popen([sys.executable, "-c", code], stdout=sys.stdout, stderr=sys.stderr) as proc:
         proc.communicate()

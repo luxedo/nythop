@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="assets/logo_square.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nythop - Python, but backwards!</title>
+
+    <link
+      rel="stylesheet"
+      href="https://pyscript.net/releases/2024.10.2/core.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      type="module"
+      src="https://pyscript.net/releases/2024.10.2/core.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        content: ["./src/**/*.{html,js}"],
+        theme: {
+          extend: {
+            colors: {
+              primary: "#354b9d",
+              "primary-hover": "#2a3c7d",
+              secondary: "#ff9f49",
+              "secondary-hover": "#ff8c24",
+              neutral: "#9c9c9c",
+              "neutral-light": "#f5f5f5",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body>
+    <header class="bg-primary backdrop-blur-sm p-4">
+      <div class="flex flex-col items-center gap-6 mx-auto">
+        <div class="flex flex-col items-center justify-center w-full max-w-md">
+          <div
+            class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto ring-1 ring-white/10 p-4 mb-4"
+          >
+            <img
+              src="/assets/logo.svg"
+              alt="Nythop Logo"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+          <div class="flex flex-row items-center justify-center gap-8">
+            <div class="flex-auto">
+              <p
+                class="text-white text-xl font-medium tracking-wide text-center mt-4"
+              >
+                Python, but
+                <span class="text-secondary italic">backwards!</span>
+              </p>
+            </div>
+            <div class="flex-auto">
+              <a
+                href="https://pypi.org/project/nythop/"
+                target="_blank"
+                class="text-white hover:text-gray-200"
+              >
+                <div class="flex flex-col items-center">
+                  <i class="fa-solid fa-cube text-4xl"></i>
+                  <p class="text-center text-secondary">pypi/nythop</p>
+                </div>
+              </a>
+            </div>
+            <div class="flex-auto">
+              <a
+                href="https://github.com/luxedo/nythop"
+                target="_blank"
+                class="text-white hover:text-gray-200"
+              >
+                <div class="flex flex-col items-center">
+                  <i class="fab fa-github text-4xl"></i>
+                  <p class="text-center text-secondary">github/nythop</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6 space-y-6">
+      <section class="bg-white rounded-lg shadow-lg p-6 space-y-6">
+        <h2 class="text-2xl font-bold text-gray-900">Welcome to Nythop</h2>
+        <p class="text-gray-700">
+          Ready to experience Python in reverse? Nythop is here to revolutionize
+          your coding experience by turning Python on its head – literally.
+          Every line is written backwards, making your code uniquely unreadable!
+        </p>
+
+        <p class="font-semibold text-gray-900">Why choose Nythop?</p>
+        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+          <li>No more indentation wars - they're at the end of the line!</li>
+          <li>Comments read from right to left</li>
+          <li>Perfectly unreadable code, just as any good esolang should be</li>
+          <li>All the confusion of Python, none of the clarity</li>
+        </ul>
+        <p class="text-gray-700">
+          Learn more about Nythop in the
+          <a
+            class="text-secondary font-semibold"
+            href="https://pypi.org/project/nythop/"
+            >package</a
+          >
+          page
+        </p>
+      </section>
+
+      <section class="bg-white rounded-lg shadow-lg p-6">
+        <div
+          class="border-b border-secondary p-4 flex items-center justify-between mb-4"
+        >
+          <h3 class="font-semibold text-gray-900">Code Editor</h3>
+          <button
+            py-click="run_nythop"
+            class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md transition-colors"
+          >
+            Run Code
+          </button>
+        </div>
+        <textarea
+          id="editor"
+          class="w-full h-72 font-mono text-gray-800 p-4 border border-neutral rounded-md focus:ring-2 focus:ring-primary resize-y"
+          placeholder='Start coding in Nyhtop here... #&#10;Example: #&#10;)"!dlrow olleH"(tnirp'
+        ></textarea>
+
+        <div class="border-b border-secondary p-4 mb-4">
+          <h3 class="font-semibold text-gray-900">Output</h3>
+        </div>
+        <pre
+          id="output"
+          class="w-full h-36 font-mono bg-gray-50 p-4 border border-neutral rounded-md overflow-y-auto text-gray-800"
+        ></pre>
+      </section>
+
+      <section class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Quick Examples</h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2">Hello World</h3>
+            <code
+              class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
+              >)"!dlrow ,olleH"(tnirp</code
+            >
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2">
+              Arithmetic Operations
+            </h3>
+            <!-- prettier-ignore-start -->
+            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">5 = a
+3 = b
+)b + a ,":muS"(tnirp
+)b - a ,":ecnereffiD"(tnirp
+)b * a ,":tcudorP"(tnirp
+)b / a ,":tneitouQ"(tnirp
+          </code></pre>
+            <!-- prettier-ignore-end -->
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2">Fibonacci</h3>
+            <!-- prettier-ignore-start -->
+            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">:)n(iccanobif fed
+1 ,0 = b ,a    
+:)n(egnar ni _ rof    
+)" "=dne ,a(tnirp        
+b + a ,b = b ,a        
+
+)01(iccanobif
+          </code></pre>
+            <!-- prettier-ignore-end -->
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2">Factorial</h3>
+            <!-- prettier-ignore-start -->
+            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">:)n(lairotcaf fed
+:0 == n fi    
+1 nruter        
+:esle    
+)1 - n(lairotcaf * n nruter        
+
+))5(lairotcaf ,":5 fo lairotcaF"(tnirp
+          </code></pre>
+            <!-- prettier-ignore-end -->
+          </div>
+          <p class="mt-6 text-secondary font-semibold">
+            Note: All code is written from right to left, but executed like
+            normal Python!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script type="py" src="./main.py"></script>
+  </body>
+</html>

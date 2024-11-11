@@ -1,5 +1,7 @@
 # Nyhtop: The Python Replacement You Never Knew You Didn’t Need
 
+![Nythop Logo](docs/assets/logo.svg)
+
 [![PyPI - Version](https://img.shields.io/pypi/v/nythop.svg)](https://pypi.org/project/nythop)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nythop.svg)](https://pypi.org/project/nythop)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -23,7 +25,7 @@ If you’re tired of the predictability and accessibility of Python, Nyhtop prom
 up by keeping things just familiar enough to fool you into thinking you know what’s happening. But
 in practice? It’s perfectly unreadable – just as any good esolang should be.
 
-Fly with the freedom of _Nythop_ with the following examples:
+Enjoy the freedom of _Nythop_ with these examples:
 
 <!-- prettier-ignore-start -->
 ```
