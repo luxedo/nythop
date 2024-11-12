@@ -31,6 +31,25 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css"
+      integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"
+      integrity="sha512-6cPYokihlrofMNApz7OXVQNObWjLiKGIBBb7+UB+AuMiRCLKmFKgrwms21sHq3bdFFZWpfHYRJBJvMFMPj1S9g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/mode/simple.min.js"
+      integrity="sha512-CGM6DWPHs250F/m90YZ9NEiEUhd9a4+u8wAzeKC6uHzZbYyt9/e2dLC5BGGB6Y0HtEdZQdSDYjDsoTyNGdMrMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script
       type="module"
       src="https://pyscript.net/releases/2024.10.2/core.js"
@@ -53,6 +72,17 @@
         },
       };
     </script>
+    <style>
+      .CodeMirror {
+        border: 1px solid #9c9c9c;
+        border-radius: 6px;
+        background-color: #f9fafb;
+        padding: 16px;
+      }
+      .example-wrapper {
+        height: 12em;
+      }
+    </style>
   </head>
 
   <body>
@@ -148,9 +178,9 @@
         <textarea
           id="editor"
           class="w-full h-72 font-mono text-gray-800 p-4 border border-neutral rounded-md focus:ring-2 focus:ring-primary resize-y"
-          placeholder='Start coding in Nyhtop here... #&#10;Example: #&#10;)"!dlrow olleH"(tnirp'
-        ></textarea>
-
+        >
+Start coding in Nyhtop here... #&#10;Example: #&#10;)"!dlrow olleH"(tnirp</textarea
+        >
         <div class="border-b border-secondary p-4 mb-4">
           <h3 class="font-semibold text-gray-900">Output</h3>
         </div>
@@ -165,9 +195,11 @@
         <div class="space-y-6">
           <div>
             <h3 class="font-semibold text-gray-900 mb-2">Hello World</h3>
-            <code
-              class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
-              >)"!dlrow ,olleH"(tnirp</code
+
+            <textarea
+              class="cm-highlight block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
+            >
+)"!dlrow ,olleH"(tnirp</textarea
             >
           </div>
           <div>
@@ -175,39 +207,48 @@
               Arithmetic Operations
             </h3>
             <!-- prettier-ignore-start -->
-            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">5 = a
+            <textarea
+              class="cm-highlight block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
+            >
+5 = a
 3 = b
 )b + a ,":muS"(tnirp
 )b - a ,":ecnereffiD"(tnirp
 )b * a ,":tcudorP"(tnirp
-)b / a ,":tneitouQ"(tnirp
-          </code></pre>
+)b / a ,":tneitouQ"(tnirp</textarea
+            >
             <!-- prettier-ignore-end -->
           </div>
           <div>
             <h3 class="font-semibold text-gray-900 mb-2">Fibonacci</h3>
             <!-- prettier-ignore-start -->
-            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">:)n(iccanobif fed
+            <textarea
+              class="cm-highlight block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
+            >
+:)n(iccanobif fed
 1 ,0 = b ,a    
 :)n(egnar ni _ rof    
 )" "=dne ,a(tnirp        
 b + a ,b = b ,a        
 
-)01(iccanobif
-          </code></pre>
+)01(iccanobif</textarea
+            >
             <!-- prettier-ignore-end -->
           </div>
           <div>
             <h3 class="font-semibold text-gray-900 mb-2">Factorial</h3>
             <!-- prettier-ignore-start -->
-            <pre><code class="block bg-gray-50 p-3 rounded-md font-mono text-gray-800">:)n(lairotcaf fed
+            <textarea
+              class="cm-highlight block bg-gray-50 p-3 rounded-md font-mono text-gray-800"
+            >
+:)n(lairotcaf fed
 :0 == n fi    
 1 nruter        
 :esle    
 )1 - n(lairotcaf * n nruter        
 
-))5(lairotcaf ,":5 fo lairotcaF"(tnirp
-          </code></pre>
+))5(lairotcaf ,":5 fo lairotcaF"(tnirp</textarea
+            >
             <!-- prettier-ignore-end -->
           </div>
           <p class="mt-6 text-secondary font-semibold">
@@ -219,5 +260,54 @@ b + a ,b = b ,a
     </main>
 
     <script type="py" src="./main.py"></script>
+    <script>
+      CodeMirror.defineSimpleMode("nythop", {
+        start: [
+          { regex: /.*#/, token: "comment" },
+          { regex: /['"].*?['"]/, token: "string" },
+          {
+            regex: /\w*(?:fed|ssalc|fi|esle|rof|elihw|nruter|tropmi|morf)\b/,
+            token: "keyword",
+          },
+          {
+            regex: /\w*(?:tni|rts|taolf|tsil|tes|nel|egnar|tupni|tnirp)\b/,
+            token: "builtin",
+          },
+          { regex: /\w*(?:eurT|eslaF|enoN)\b/, token: "atom" },
+          { regex: /\b\d+(?:\.\d+)?/, token: "number" },
+          { regex: /[-+*/%<>=!&|^~:]+/, token: "operator" },
+          { regex: /[\)\(\}\{\]\[]+/, token: "bracket" },
+          { regex: /[a-zA-Z_]\w*/, token: "variable" },
+        ],
+        comment: [
+          { regex: /.*?\*\//, token: "comment", next: "start" },
+          { regex: /.*/, token: "comment" },
+        ],
+
+        meta: {
+          dontIndentStates: ["comment"],
+          lineComment: "#",
+        },
+      });
+      var cmEditor = CodeMirror.fromTextArea(
+        document.getElementById("editor"),
+        {
+          lineNumbers: false,
+          mode: "nythop",
+          indentWithTabs: false,
+        },
+      );
+
+      document.querySelectorAll(".cm-highlight").forEach((codeElement) => {
+        const e = CodeMirror.fromTextArea(codeElement, {
+          mode: "nythop",
+          readOnly: true,
+          viewportMargin: Infinity,
+          lineWrapping: true,
+        });
+        const height = e.getValue().split("\n").length * 1.5 + 3;
+        e.getWrapperElement().style.height = `${height}em`;
+      });
+    </script>
   </body>
 </html>

@@ -2,7 +2,7 @@ import sys
 import traceback
 from io import StringIO
 
-from pyscript import document
+from pyscript import document, window
 
 
 def nythop_convert(string: str) -> str:
@@ -10,21 +10,19 @@ def nythop_convert(string: str) -> str:
 
 
 def run_nythop(_):
-    input_text = document.querySelector("#editor")
+    input_text = window.cmEditor.getValue()
     output_div = document.querySelector("#output")
 
     error_highlight = ["border-red-500", "bg-red-200"]
     for c in error_highlight:
         output_div.classList.remove(c)
 
-    nythop_code = input_text.value
-
     capture = StringIO()
     stdout_bak = sys.stdout
     sys.stdout = capture
 
     try:
-        exec(nythop_convert(nythop_code), {})
+        exec(nythop_convert(input_text), {})
         text = capture.getvalue()
         capture.close()
         sys.stdout = stdout_bak
