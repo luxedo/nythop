@@ -1,12 +1,13 @@
 # Nyhtop: The Python Replacement You Never Knew You Didn’t Need
 
-![Nythop Logo](docs/assets/logo.svg)
+![Nythop Logo](https://raw.githubusercontent.com/luxedo/nythop/refs/heads/main/docs/assets/logo.svg)
 
 [![PyPI - Version](https://img.shields.io/pypi/v/nythop.svg)](https://pypi.org/project/nythop)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/nythop.svg)](https://pypi.org/project/nythop)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/luxedo/nythop/publish.yml)
 ![Codecov](https://img.shields.io/codecov/c/github/luxedo/nythop)
+[![CodeFactor](https://www.codefactor.io/repository/github/luxedo/nythop/badge)](https://www.codefactor.io/repository/github/luxedo/nythop)
 
 ---
 
