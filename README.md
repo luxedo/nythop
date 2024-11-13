@@ -26,6 +26,8 @@ If you’re tired of the predictability and accessibility of Python, Nyhtop prom
 up by keeping things just familiar enough to fool you into thinking you know what’s happening. But
 in practice? It’s perfectly unreadable – just as any good esolang should be.
 
+> ### [Try Nythop Now!](https://luxedo.github.io/nythop/)
+
 Enjoy the freedom of _Nythop_ with these examples:
 
 <!-- prettier-ignore-start -->
